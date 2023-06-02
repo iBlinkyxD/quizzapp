@@ -55,4 +55,7 @@ class QuizzBrain{
     }
   }
 
+  void quizReset(){
+    _questionCount = -1;
+  }
 }

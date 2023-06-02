@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:quizzapp/quiz_brain.dart';
-import 'package:alert/alert.dart';
-
+import 'package:rflutter_alert/rflutter_alert.dart';
 //Objeto de QuizzBrain
 QuizzBrain quiz = QuizzBrain();
-int totalscore = 0;
 List<Widget> scoreKeeper = [];
-
+int totalscore = 0;
 void main() => runApp(Quizzler());
 
 class Quizzler extends StatelessWidget {
@@ -72,17 +70,24 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 //The user picked true.
                 bool correctAnswer = quiz.getQuestionAnswer;
-                if(quiz.quizzFinished()){
-                  Alert(message: 'Your score is ' + totalscore.toString(), shortDuration: false).show();
-                }
                 if(correctAnswer == true){
                   scoreKeeper.add(Icon(Icons.check, color: Colors.green));
-                  totalscore++;
+                  totalscore ++;
                   print('Correcto');
                 }else{
                   scoreKeeper.add(Icon(Icons.close, color: Colors.red));
                   print('Incorrecto');
                 }
+                if(quiz.quizzFinished()){
+                  Alert(context: context,
+                      title: 'Score',
+                      desc: totalscore.toString()
+                  ).show();
+                  quiz.quizReset();
+                  totalscore = 0;
+                  scoreKeeper.clear();
+                }
+
                 setState(() {
                   quiz.nextQuestion();
                 });
@@ -107,16 +112,22 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 //The user picked false.
                 bool correctAnswer = quiz.getQuestionAnswer;
-                if(quiz.quizzFinished()){
-                  Alert(message: 'Your score is ' + totalscore.toString(), shortDuration: false).show();
-                }
                 if(correctAnswer == false){
                   scoreKeeper.add(Icon(Icons.check, color: Colors.green,));
-                  totalscore++;
+                  totalscore ++;
                   print('Correcto');
                 }else{
                   scoreKeeper.add(Icon(Icons.close, color: Colors.red));
                   print('Incorrecto');
+                }
+                if(quiz.quizzFinished()){
+                  Alert(context: context,
+                      title: 'Score',
+                      desc: totalscore.toString()
+                  ).show();
+                  quiz.quizReset();
+                  totalscore = 0;
+                  scoreKeeper.clear();
                 }
                 setState(() {
                   quiz.nextQuestion();
@@ -133,9 +144,3 @@ class _QuizPageState extends State<QuizPage> {
     );
   }
 }
-
-/*
-question1: 'You can lead a cow down stairs but not up stairs.', false,
-question2: 'Approximately one quarter of human bones are in the feet.', true,
-question3: 'A slug\'s blood is green.', true,
-*/
