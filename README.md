@@ -1,16 +1,11 @@
-# quizzapp
+# Quiz App
 
-A new Flutter project.
+## Kevin Joa Feng - 1100305
 
-## Getting Started
+Modificar/Completar el ejercicio QuizApp:
 
-This project is a starting point for a Flutter application.
+1.- Debajo del último botón, colocar un check verde cada vez que el usuario acierte la pregunta, o una cruz roja cuando se equivoque
+2.- Al final de la prueba, indique el score obtenido (XX/12)
+3.- Sería interesante que volviera al inicio para repetir el quiz
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Hint: Busque un paquete que se llama "alert".
